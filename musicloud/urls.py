@@ -15,14 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.conf.urls import url
+from django.contrib.auth import views as auth_views
 from mc import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.index, name='index'),
     url(r'^register/$', views.register, name='register'),
-    url(r'^login/$', views.login, name='login'),
-    url(r'^logout/$', views.logout, name='logout'),
+    url(r'^login/$', auth_views.login, {'template_name': 'login.html'}, name='login'),
+    url(r'^logout/$', auth_views.logout, {'next_page': '/'}, name='logout'),
     url(r'^search/(.+)', views.search, name='search'),
     url(r'^upload/$', views.upload_track, name='upload_track'),
     url(r'^download/([0-9]+)', views.download_track, name='download_track'),

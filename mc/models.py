@@ -4,10 +4,6 @@ from datetime import datetime
 
 class Artist(models.Model):
     name = models.CharField(max_length=100)
-    sex = (
-        ('M', 'Male'),
-        ('F', 'Female'),
-    )
     is_group = models.BooleanField()
 
     def __str__(self):
