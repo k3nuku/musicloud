@@ -7,21 +7,19 @@ from mc.models import Album, Track, Artist
 class ArtistForm(forms.ModelForm):
     class Meta:
         model = Artist
-        fields = ['name', 'is_group']
+        fields = ['name', 'image', 'is_group']
 
 
 class AlbumForm(forms.ModelForm):
     class Meta:
         model = Album
-        fields = ['name', 'artist', 'publisher', 'release_date']
+        fields = ['name', 'image', 'artist', 'publisher', 'release_date']
 
 
 class TrackForm(forms.ModelForm):
     class Meta:
         model = Track
-        fields = ['name', 'artist', 'album', 'filename', 'is_lyrics_available', 'lyrics']
-
-    file = forms.FileField()
+        fields = ['name', 'artist', 'album', 'media', 'is_lyrics_available', 'lyrics']
 
 
 class SearchForm(forms.Form):

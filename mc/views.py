@@ -2,10 +2,18 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from mc.forms import RegistrationForm, TrackForm, SearchForm
 from django.contrib.auth.decorators import login_required
+from mc.models import Track
 
 
-def index(request):
-    return render(request, 'index.html')
+def index(request, index_type=''):
+    if index_type == 'artists':
+        pass
+    elif index_type == 'albums':
+        pass
+    else:
+        songs = Track.objects.all()
+
+        return render(request, 'index.html', {'songs': songs})
 
 
 def register(request):
@@ -27,6 +35,16 @@ def search(request):
     if form.is_valid():
         search_string = form.cleaned_data['query']
 
+    pass
+
+
+@login_required
+def profile(request):
+    pass
+
+
+@login_required
+def favorites(request):
     pass
 
 
