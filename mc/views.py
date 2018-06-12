@@ -25,7 +25,12 @@ def login_user(request):
 
 
 def logout_user(request):
-    pass
+    logout(request)
+    form = UserForm(request.POST or None)
+    context = {
+        "form" : form,
+    }
+    return render(request, 'template/index.html')
 
 
 def index(request):
@@ -45,7 +50,7 @@ def register(request):
             if user.is_active:
                 login(request, user)
                 return render(request, 'template/index.html', )
-            else
+            else:
                 return render(request, '')
 
     pass

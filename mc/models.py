@@ -2,9 +2,11 @@ from django.contrib.auth.models import User
 from django.db import models
 from datetime import datetime
 # Create your models here.
+from .models import Artist
+
 
 class Album(models.Model):
-    artist = models.ForeignKey(models.Artist)
+    artist = models.ForeignKey(Artist)
     #user = models.ForeignKey(User, default=1)
     publisher = models.CharField(max_length=100)
     release_date = models.DateField(default=datetime(1970, 1, 1))
