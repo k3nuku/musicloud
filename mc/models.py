@@ -5,7 +5,7 @@ from datetime import datetime
 
 class Album(models.Model):
     artist = models.ForeignKey(models.Artist)
-    user = models.ForeignKey(User, default=1)
+    #user = models.ForeignKey(User, default=1)
     publisher = models.CharField(max_length=100)
     release_date = models.DateField(default=datetime(1970, 1, 1))
 
