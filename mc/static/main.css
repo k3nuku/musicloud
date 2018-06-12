@@ -1,0 +1,12 @@
+.menuicon
+{
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    margin-right: 8px;
+}
+
+.nav-link
+{
+    display: inline-block !important;
+}
