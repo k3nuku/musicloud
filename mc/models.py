@@ -26,7 +26,7 @@ class Track(models.Model):
     album = models.ForeignKey(Album, on_delete=models.CASCADE)
     filename = models.CharField(max_length=100)
     is_lyrics_available = models.BooleanField()
-    lyrics = models.TextField(max_length=500)
+    lyrics = models.TextField(max_length=500, default=None)
 
     def __str__(self):
         return self.artist.name + '-' + self.name
