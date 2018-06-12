@@ -5,6 +5,8 @@ from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 from musicloud.forms import AlbumForm, TrackForm, UserForm
 from mc.models import Album, Track, Artist
+
+
 # Create your views here.
 
 
@@ -18,23 +20,22 @@ def login_user(request):
                 login(request, user)
                 # login success
                 return render(request, 'template/index.html', {})
-            return # account is not active
+            return  # account is not active
         else:
-            return # login fail
-
+            return  # login fail
 
 
 def logout_user(request):
     logout(request)
     form = UserForm(request.POST or None)
     context = {
-        "form" : form,
+        "form": form,
     }
     return render(request, 'template/index.html')
 
 
 def index(request):
-    pass
+    return render(request, 'template/index.html')
 
 
 def register(request):
