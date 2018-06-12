@@ -21,6 +21,12 @@ class TrackForm(forms.ModelForm):
         model = Track
         fields = ['name', 'artist', 'album', 'filename', 'is_lyrics_available', 'lyrics']
 
+    file = forms.FileField()
+
+
+class SearchForm(forms.Form):
+    query = forms.CharField(required=True)
+
 
 class RegistrationForm(UserCreationForm):
     email = forms.EmailField(required=True)
