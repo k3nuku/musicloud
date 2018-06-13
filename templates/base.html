@@ -15,61 +15,60 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="{% url 'index' %}">Musicloud</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand" href="{% url 'index' %}">Musicloud</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#"><img class="menuicon" src="{% static 'house.svg' %}"/>Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#"><img class="menuicon" src="{% static 'musicnote.svg' %}"/>Songs</a>
-      </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="{% url 'index' %}"><img class="menuicon" src="{% static 'house.svg' %}"/>Home <span class="sr-only">(current)</span></a>
+        </li>
         <li class="nav-item">
-        <a class="nav-link" href="#"><img class="menuicon" src="{% static 'album.svg' %}"/>Albums</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#"><img class="menuicon" src="{% static 'artist.svg' %}"/>Artists</a>
-      </li>
+            <a class="nav-link" href="{% url 'index_songs' %}"><img class="menuicon" src="{% static 'musicnote.svg' %}"/>Songs</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'index_albums' %}"><img class="menuicon" src="{% static 'album.svg' %}"/>Albums</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'index_artists' %}"><img class="menuicon" src="{% static 'artist.svg' %}"/>Artists</a>
+        </li>
     </ul>
     <ul class="navbar-nav">
-    {% if user.is_authenticated %}
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          {{ user.username }}
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item text-primary" href="{% url 'upload_track' %}">Upload</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
-          <a class="dropdown-item" href="{% url 'favorites' %}">Favorites</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item text-danger" href="{% url 'logout' %}">Logout</a>
-        </div>
-      </li>
-    {% else %}
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'login' %}">Login</a>
-      </li>
-    {% endif %}
+        {% if user.is_authenticated %}
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {{ user.username }}
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item text-primary" href="{% url 'upload_track' %}">Upload</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
+                <a class="dropdown-item" href="{% url 'favorites' %}">Favorites</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item text-danger" href="{% url 'logout' %}">Logout</a>
+            </div>
+        </li>
+        {% else %}
+        <li class="nav-item mr-2">
+            <a class="btn btn-primary btn-dark" href="{% url 'login' %}" role="button">Login</a>
+        </li>
+        {% endif %}
     </ul>
     <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
-  </div>
+    </div>
 </nav>
-<main class="bd-content p-5" id="content" role="main">
+<main class="bd-content text-center" id="content" role="main">
 {% block body %}
 {% endblock %}
 </main>
 <footer class="bd-footer text-muted">
-  <div class="container-fluid p-3 p-md-5">
-    <p>musicloud prototype-alpha, 2018-Spring Database Ajou University.</p>
-  </div>
+    <div class="container-fluid p-3 p-md-5">
+        <p>musicloud dev-prototype-alpha, 2018-Spring Database final assignment, Ajou University.</p>
+    </div>
 </footer>
 </body>
 </html>

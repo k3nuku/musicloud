@@ -13,7 +13,11 @@ def index(request, index_type=''):
     else:
         songs = Track.objects.all()
 
-        return render(request, 'index.html', {'songs': songs})
+        return render(request, 'index.html',
+                      {
+                          'songs': songs,
+                          'is_main_page': (index_type == 'main') and True or False
+                        })
 
 
 def register(request):

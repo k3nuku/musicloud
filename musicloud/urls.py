@@ -22,7 +22,7 @@ from mc import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', views.index, name='index'),
+    url(r'^$', views.index, {'index_type': 'main'}, name='index'),
     url(r'^songs/$', views.index, {'index_type': 'songs'}, name='index_songs'),
     url(r'^artists/$', views.index, {'index_type': 'artists'}, name='index_artists'),
     url(r'^albums/$', views.index, {'index_type': 'albums'}, name='index_albums'),
