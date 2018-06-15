@@ -24,8 +24,8 @@ class Album(models.Model):
 
 class Track(models.Model):
     name = models.CharField(max_length=250)
-    artist = models.ForeignKey(Artist, on_delete=models.CASCADE)
-    album = models.ForeignKey(Album, on_delete=models.CASCADE)
+    artist = models.ForeignKey(Artist, on_delete=models.CASCADE, null=True, blank=True)
+    album = models.ForeignKey(Album, on_delete=models.CASCADE, null=True, blank=True)
     media = models.FileField(upload_to='tracks', null=True)
     is_lyrics_available = models.BooleanField()
     lyrics = models.TextField(max_length=500, null=True, blank=True)

@@ -19,7 +19,9 @@
         {% for song in songs %}
             <div class="col-md-4">
                 <div class="card mb-4 box-shadow">
+                    {% if song.album.image %}
                     <img class="card-img-top" src="{{ song.album.image.url }}" alt="Thumbnail [100%x225]" data-holder-rendered="true">
+                    {% endif %}
                     <div class="card-body">
                         <p class="card-text">{{ song.artist.name }} - {{ song.name }}<br>{{ song.album.name }}</p>
                         <div class="d-flex justify-content-between align-items-center">

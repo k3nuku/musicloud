@@ -19,7 +19,11 @@ class AlbumForm(forms.ModelForm):
 class TrackForm(forms.ModelForm):
     class Meta:
         model = Track
-        fields = ['name', 'artist', 'album', 'media', 'is_lyrics_available', 'lyrics']
+        fields = ['album','name','artist','media', 'is_lyrics_available', 'lyrics']
+
+
+class UploadForm(forms.Form):
+    file = forms.FileField()
 
 
 class SearchForm(forms.Form):
