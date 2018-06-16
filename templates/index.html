@@ -35,6 +35,43 @@
                 </div>
             </div>
         {% endfor %}
+
+        {% for album in albums %}
+            <div class="col-md-4">
+                <div class="card mb-4 box-shadow">
+                    {% if album.image %}
+                    <img class="card-img-top" src="{{ album.image.url }}" alt="Thumbnail [100%x225]" data-holder-rendered="true">
+                    {% endif %}
+                    <div class="card-body">
+                        <p class="card-text">{{ album.artist.name }}<br>{{ album.artist.name }}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-sm btn-outline-secondary">Play</button>
+                                <button type="button" class="btn btn-sm btn-outline-secondary">Download</button>
+                            </div>
+                            <small class="text-muted">{{ album.release_date }}</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+        {% for artist in artists %}
+            <div class="col-md-4">
+                <div class="card mb-4 box-shadow">
+                    <div class="card-body">
+                        <p class="card-text">{{ artist.name }}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-sm btn-outline-secondary">Play</button>
+                                <button type="button" class="btn btn-sm btn-outline-secondary">Download</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
         </div>
     </div>
 </div>

@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block body %}
+{% if is_main_page %}
+<section class="jumbotron text-center">
+    <div class="container">
+        <h1 class="jumbotron-heading">Play your favorite music wherever you are.</h1>
+        <p class="lead text-muted">Just upload your music, Musicloud will anlayze your MP3 file via ID3 Tag in your file. After uploading, You can play or download at anywhere. That's all.</p>
+        <p>
+            <a href="#" class="btn btn-primary my-2">Main call to action</a>
+            <a href="#" class="btn btn-secondary my-2">Secondary action</a>
+        </p>
+    </div>
+</section>
+{% endif %}
+<div class="album py-5">
+    <div class="container">
+        <div class="row">
+        {% for artist in artists %}
+            <div class="col-md-4">
+                <div class="card mb-4 box-shadow">
+                    <div class="card-body">
+                        <p class="card-text">{{ artist.name }}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-sm btn-outline-secondary">Play</button>
+                                <button type="button" class="btn btn-sm btn-outline-secondary">Download</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

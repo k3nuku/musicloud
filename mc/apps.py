@@ -20,12 +20,24 @@ def parse_id3(file):
 def get_albumart(file):
     id3 = EasyID3(file)
 
-    with TemporaryFile() as f :
+    with TemporaryFile() as f:
         f.write(id3.get('APIC')[0].data)
         f.seek(0)
         data = f.read()
 
     return data
+
+
+def get_media(file):
+    with TemporaryFile() as f:
+        for chunk in file.chunks():
+            f.write(chunk)
+
+        f.seek(0)
+        data = f.read()
+
+    return data
+
 
 
 def convert_date(yyyymmdd):

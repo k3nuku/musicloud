@@ -3,14 +3,29 @@ from django.http import HttpResponse
 from mc.forms import RegistrationForm, TrackForm, SearchForm, UploadForm
 from django.contrib.auth.decorators import login_required
 from mc.models import Track, Artist, Album
-from mc.apps import parse_id3, convert_date, get_albumart, get_PIL_data
+from mc.apps import parse_id3, convert_date, get_albumart, get_media
 from django.core.files.base import ContentFile
+import hashlib
 
 
 def index(request, index_type=''):
     if index_type == 'artists':
+        artists = Artist.objects.all()
+
+        return render(request, 'index_artist.html',
+                      {
+                          'artists': artists,
+                          'is_main_page': (index_type == 'main') and True or False
+                      })
         pass
     elif index_type == 'albums':
+        albums = Album.objects.all()
+
+        return render(request, 'index_album.html',
+                      {
+                          'albums': albums,
+                          'is_main_page': (index_type == 'main') and True or False
+                      })
         pass
     else:
         songs = Track.objects.all()
@@ -57,7 +72,7 @@ def favorites(request):
 @login_required
 def upload_track(request):
     if request.method == 'POST':
-        form = UploadForm(request.POST, request.FILES)
+        form = TrackForm(request.POST, request.FILES)
 
         id3 = parse_id3(request.FILES['media'].temporary_file_path())
 
@@ -84,8 +99,8 @@ def upload_track(request):
             album_obj.name = album
             album_obj.artist = artist_obj
             album_obj.release_date = convert_date(release_date)
-            album_obj.image = ContentFile(
-                get_albumart(request.FILES['file'].temporary_file_path()))
+            #album_obj.image = ContentFile(
+            #    get_albumart(request.FILES['media'].temporary_file_path()))
             album_obj.publisher = ''
             album_obj.save()
         else:
@@ -93,17 +108,16 @@ def upload_track(request):
 
         if form.is_valid():
             if not Track.objects.filter(name=title).exists():
-                track = Track()
-                track.name = title
-                track.artist = artist_obj
-                track.album = album_obj
-                track.is_lyrics_available = False
-                #track.media = ContentFile()
-                track.save()
+                obj = form.save()
+
+                obj.name = title
+                obj.artist = artist_obj
+                obj.album = album_obj
+                obj.save()
 
             return redirect('index')
 
-    return render(request, 'upload.html', {'form': UploadForm})
+    return render(request, 'upload.html', {'form': TrackForm})
 
 
 @login_required
