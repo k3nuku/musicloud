@@ -56,7 +56,16 @@ def search(request):
     if form.is_valid():
         search_string = form.cleaned_data['query']
 
-    pass
+        d1 = Track.objects.filter(name=search_string)
+
+        if d1.exists():
+            return render(request, 'index.html',
+                          {
+                              'songs': d1,
+                              'is_main_page': False
+                          })
+        else:
+            return HttpResponse('no such track.')
 
 
 @login_required

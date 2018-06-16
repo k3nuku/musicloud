@@ -18,6 +18,8 @@ from django.conf import settings
 from django.conf.urls import url
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
+from django.urls import path
+
 from mc import views
 
 urlpatterns = [
@@ -32,7 +34,7 @@ urlpatterns = [
     url(r'^upload/$', views.upload_track, name='upload_track'),
     url(r'^profile/$', views.profile, name='profile'),
     url(r'^favorites/$', views.favorites, name='favorites'),
-    url(r'^search/(.+)', views.search, name='search'),
+    path('search/', views.search, name='search'),
     url(r'^download/([0-9]+)', views.download_track, name='download_track'),
     url(r'^streaming/([0-9]+)', views.streaming_track, name='streaming_track'),
 ]
